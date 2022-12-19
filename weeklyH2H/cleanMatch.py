@@ -3,7 +3,7 @@ import os
 import aiohttp
 
 from utils.fplConnector import get_connection
-from utils.printer import print_clean_match
+from utils.printer import print_clean_match, print_match_metadata_summary
 from utils.teamModifier import remove_identical_players
 
 GAME_WEEK = int(os.getenv('GAME_WEEK'))
@@ -26,6 +26,7 @@ async def weekly_h2h():
             user1_clean_picks, user2_clean_picks = remove_identical_players(user1_picks[GAME_WEEK], user2_picks[
                 GAME_WEEK])
             await print_clean_match(fpl, user1, user1_clean_picks, user2, user2_clean_picks)
+            await print_match_metadata_summary(fpl, user1_picks, user2_picks)
 
 
 async def get_users_picks(user1, user2):
