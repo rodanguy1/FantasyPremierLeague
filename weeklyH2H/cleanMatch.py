@@ -17,6 +17,7 @@ async def get_game_week_matches(fpl):
 
 
 async def weekly_h2h():
+    output = ""
     async with aiohttp.ClientSession() as session:
         fpl = await get_connection(session)
         current_h2h_matches = await get_game_week_matches(fpl)
@@ -25,8 +26,9 @@ async def weekly_h2h():
             user1_picks, user2_picks = await get_users_picks(user1, user2)
             user1_clean_picks, user2_clean_picks = remove_identical_players(user1_picks[GAME_WEEK], user2_picks[
                 GAME_WEEK])
-            await print_clean_match(fpl, user1, user1_clean_picks, user2, user2_clean_picks)
-            await print_match_metadata_summary(fpl, user1_picks, user2_picks)
+            output += await print_clean_match(fpl, user1, user1_clean_picks, user2, user2_clean_picks)
+            output += await print_match_metadata_summary(fpl, user1_picks, user2_picks)
+    return output
 
 
 async def get_users_picks(user1, user2):
