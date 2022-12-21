@@ -8,5 +8,6 @@
     - FPL_PWD
     - H2H_LEAGUE_ID
     - GAME_WEEK
+    - WHATSAPP_GROUP_ID
     
-  2. Run weekly_h2h() from Main func. 
+  2. Run weekly_h2h() from sendGameWeekReport.py. 
