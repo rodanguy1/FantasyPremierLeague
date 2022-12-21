@@ -1,0 +1,17 @@
+H2H_LEAGUE_ID=<ENTER_ID>
+FPL_PWD=<ENTER_PWD>
+EMAIL=<ENTER_EMAIL>
+GAME_WEEK=<ENTER_GAME_WEEK>
+
+# GW 17
+00 14 26 12 * /usr/local/bin/python3 /Users/guyrodan/IdeaProjects/FantasyPremierLeague/main.py
+# GW 18
+15 21 30 12 * /usr/local/bin/python3 /Users/guyrodan/IdeaProjects/FantasyPremierLeague/main.py
+# GW 19
+00 19 02 01 * /usr/local/bin/python3 /Users/guyrodan/IdeaProjects/FantasyPremierLeague/main.py
+# GW 20
+30 21 13 01 * /usr/local/bin/python3 /Users/guyrodan/IdeaProjects/FantasyPremierLeague/main.py
+
+
+# Tests:
+#* * * * *   /usr/local/bin/python3 /Users/guyrodan/IdeaProjects/FantasyPremierLeague/main.py >/tmp/stdout.log 2>/tmp/stderr.log
