@@ -11,3 +11,6 @@ async def get_team_metadata(fpl, user_picks):
         total_average_points_per_game += float(player_meta.points_per_game)
         total_bonus_points += player_meta.bonus
     return float(total_cost/10), total_average_points_per_game, float(total_bonus_points / int(os.getenv('GAME_WEEK')))
+
+
+# async def get_minus_points(fpl, user):
