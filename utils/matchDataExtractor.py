@@ -1,26 +1,13 @@
 import os
 
-from utils.teamDataCalculator import get_team_metadata
+from utils.teamDataExtractor import get_team_metadata
+from utils.userDataExtractor import get_user_transfers
 
 
-async def get_users_transfers(fpl, user1, user2):
-    output = "GameWeek Transfers:\n"
-    user1_transfers = await get_user_transfers(fpl, user1)
-    user2_transfers = await get_user_transfers(fpl, user2)
-    output += "{}: ```{}```\n".format(user1.name, user1_transfers)
-    output += "{}: ```{}```\n".format(user2.name, user2_transfers)
-    return output
 
 
-async def get_user_transfers(fpl, user):
-    output = ""
-    user1_transfers = await user.get_transfers(int(os.environ.get('GAME_WEEK')))
-    for transfer in user1_transfers:
-        player_out = (await fpl.get_player(transfer['element_out'])).web_name
-        player_in = (await fpl.get_player(transfer['element_in'])).web_name
-        output += "{} -> {}".format(player_out, player_in)
-        output += "   "
-    return output
+
+
 
 
 async def get_clean_match(fpl, user1, user1_clean_picks, user2, user2_clean_picks):
@@ -57,7 +44,7 @@ async def get_field_players(fpl, user1_clean_picks, user2_clean_picks):
 
 
 async def get_match_metadata_summary(fpl, user1_picks, user2_picks):
-    output = "Match metadata:\n"
+    output = "\nMatch metadata:\n"
     user1_total_cost, user1_average_points, user1_bps = await get_team_metadata(fpl, user1_picks)
     user2_total_cost, user2_average_points, user2_bps = await get_team_metadata(fpl, user2_picks)
     output += "```Teams costs: {} vs {}```\n".format(user1_total_cost, user2_total_cost)
