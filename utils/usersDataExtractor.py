@@ -33,7 +33,7 @@ async def get_users_transfers_and_chips(fpl, user1, user2):
         user1_transfers = await get_user_transfers(fpl, user1)
         user2_transfers = await get_user_transfers(fpl, user2)
         output += "{}:\n    {}\n    Transfers: ```{}```\n".format(user1.name, await get_user_chips(user1),
-                                                                         user1_transfers)
+                                                                  user1_transfers)
         output += "{}:\n    {}\n    Transfers: ```{}```\n".format(user2.name, await get_user_chips(user2),
-                                                                         user2_transfers)
+                                                                  user2_transfers)
     return output

@@ -1,16 +1,18 @@
-import os
-
 from utils.teamDataExtractor import get_team_metadata
-from utils.userDataExtractor import get_user_transfers
+from utils.usersDataExtractor import get_users_by_match, get_users_transfers_and_chips, get_users_clean_picks
 
 
+async def get_match_output(fpl, match):
+    user1, user2 = await get_users_by_match(fpl, match)
+    user1_clean_picks, user1_picks, user2_clean_picks, user2_picks = await get_users_clean_picks(user1, user2)
+    output = '*{} VS {}*\n\n'.format(user1.name, user2.name)
+    output += await get_clean_match(fpl, user1_clean_picks, user2_clean_picks)
+    output += await get_users_transfers_and_chips(fpl, user1, user2)
+    output += await get_match_metadata_summary(fpl, user1_picks, user2_picks)
+    return output
 
 
-
-
-
-
-async def get_clean_match(fpl, user1, user1_clean_picks, user2, user2_clean_picks):
+async def get_clean_match(fpl, user1_clean_picks, user2_clean_picks):
     output = await get_field_players(fpl, user1_clean_picks, user2_clean_picks)
     output += await get_bench_players(fpl, user1_clean_picks, user2_clean_picks)
     return output

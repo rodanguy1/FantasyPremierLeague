@@ -11,8 +11,10 @@ async def get_user_transfers(fpl, user):
         player_in = (await fpl.get_player(transfer['element_in'])).web_name
         output += "{} -> {}".format(player_out, player_in)
         output += "   "
+    if output == "":
+        output = "None"
     return output
 
 
 async def get_user_chips(user):
-    return "Chips: {}".format(await user.get_active_chips(GAME_WEEK))
+    return "Chips: ```{}```".format(await user.get_active_chips(GAME_WEEK))
