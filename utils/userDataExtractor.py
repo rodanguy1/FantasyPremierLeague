@@ -18,3 +18,7 @@ async def get_user_transfers(fpl, user):
 
 async def get_user_chips(user):
     return "Chips: ```{}```".format(await user.get_active_chips(GAME_WEEK))
+
+
+async def get_user_minus_points(user):
+    return (await user.get_gameweek_history(GAME_WEEK))['event_transfers_cost'] * -1
