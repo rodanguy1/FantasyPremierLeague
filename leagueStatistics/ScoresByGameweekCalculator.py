@@ -9,7 +9,7 @@ from utils.fplConnector import get_connection
 GAME_WEEK = int(os.getenv('GAME_WEEK'))
 
 
-async def get_users_h2h_results():
+async def get_scores_by_gameweek_excel():
     players_to_tab = {'Guy Rodan': 0, 'eitan ganeles': 1, 'Or Finkelstein': 2, 'Yedidya Weiss': 3, 'Nir Mesery': 4,
                       'Dor Stern': 5, 'Orel Assa': 6, 'Dan Russ': 7}
     score_by_gw = [[0] * 1] * len(players_to_tab)
@@ -52,4 +52,4 @@ async def export_excel(players_to_tab, score_by_gw):
 
 
 if __name__ == '__main__':
-    asyncio.run(get_users_h2h_results())
+    asyncio.run(get_scores_by_gameweek_excel())
